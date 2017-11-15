@@ -1,4 +1,9 @@
 document.getElementById('formButton').addEventListener('click', saveBookmark);
+document.getElementById('body').addEventListener('keydown', function(e) {
+	if(e.keyCode == 13 || e.which == 13) {
+		saveBookmark();
+	}
+});
 
 function saveBookmark() {
 	var siteName = document.getElementById('siteName').value;
@@ -66,10 +71,11 @@ function getBookmarks() {
 	for(i = 0; i < bookmarks.length; i++) {
 		var name = bookmarks[i].name;
 		var url = bookmarks[i].url;
+		var nameUp = name.toUpperCase();
 
 		bookmarksResults.innerHTML += '<div>' + 
-									  '<h3>' +name+
-									  '<a class="btn btn-default" target="_blank" href="'+url+'">Visit</a>' +
+									  '<h3>' +nameUp+
+									  '<a class="btn btn-default ml-3" target="_blank" href="'+url+'">Visit</a>' +
 									  '<a onclick="deleteBookmark(\''+url+'\')" class="btn btn-danger">Delete</a>' +
 									  '</h3>' +
 									  '</div>';
